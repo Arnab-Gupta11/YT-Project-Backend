@@ -11,11 +11,14 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(express.json({ limit: "16kb" })); //to take data as json formate
 app.use(express.urlencoded({ extended: true, limit: "16kb" })); //sometime url encode our search line like space=%20 for this
 app.use(express.static("public")); //For access public assets.If we want to save some data like pdf,file etc in our public folder
-
 app.use(cookieParser());
+
+//Import Routes
+import userRouter from "./routes/user.routes.js";
+//routes declaration
+app.use("/api/v1/users", userRouter);
 
 export { app };
